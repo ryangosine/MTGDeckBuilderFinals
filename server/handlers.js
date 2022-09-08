@@ -15,7 +15,6 @@ const options = {
 };
 
 const mtg = require("mtgsdk");
-const { oracleCards } = require("./Assets/oracle-cards-20220824210318.json");
 const express = require("express");
 const app = express();
 const { restart } = require("nodemon");

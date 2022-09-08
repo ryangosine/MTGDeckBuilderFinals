@@ -2,7 +2,6 @@
 
 const express = require("express");
 const morgan = require("morgan");
-const { cards } = require("./Assets/oracle-cards-20220824210318.json");
 const { getCards, getCard } = require("./handlers");
 
 // const cors = require("cors");
