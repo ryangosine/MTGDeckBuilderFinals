@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@auth0/auth0-react": "^1.10.2",
+    "mtgsdk": "^1.0.0"
+  }
+}

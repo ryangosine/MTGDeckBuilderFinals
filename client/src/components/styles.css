@@ -1,0 +1,10 @@
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: 30px solid red;
+}
+
+input {
+  font-size: 1rem;
+}
