@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Header from "./Header";
 
 const Dashboard = () => {
   /**
@@ -11,7 +13,25 @@ const Dashboard = () => {
    *
    */
 
-  return <div></div>;
+  return;
+  <PageWrapper>
+    <Header />
+    <Nav>
+      <Link to="deckbuilder">
+        <h1>Build Deck Here</h1>
+      </Link>
+    </Nav>
+  </PageWrapper>;
 };
+
+const PageWrapper = styled.div``;
+const Nav = styled.ul`
+  display: flex;
+  flex-direction: row;
+
+  a {
+    text-decoration: none;
+  }
+`;
 
 export default Dashboard;

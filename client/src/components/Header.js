@@ -34,6 +34,11 @@ const Header = () => {
       ) : (
         <button onClick={() => loginWithRedirect()}>Login</button>
       )}
+      <Nav>
+        <Link to="dashboard">
+          <h1>dashboard</h1>
+        </Link>
+      </Nav>
     </HeaderWrapper>
   );
 };
