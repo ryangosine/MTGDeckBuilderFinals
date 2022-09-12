@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 const CardFound = () => {
   /**
-   * 1. link to dashboard in header
-   * 2. attach sideboard component
-   * 3. make "cards"  for completed decks
-   * 4. link to individual deckpage
+   *
+   *  TO DO
+   * Links from the search button on the main page
+   * 1.) Display image of card found
+   * 2.) display text and information gathered from the API
    *
    *
    */

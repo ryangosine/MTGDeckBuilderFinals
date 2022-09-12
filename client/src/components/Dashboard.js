@@ -20,7 +20,7 @@ const Dashboard = () => {
   return (
     <PageWrapper>
       <Header />
-      <h1>Your Decks</h1>
+      <Title>Your Decks</Title>
       <SideBar />
       <Footer />
     </PageWrapper>
@@ -35,6 +35,14 @@ const Nav = styled.ul`
   a {
     text-decoration: none;
   }
+`;
+
+const Title = styled.h1`
+  position: absolute;
+  right: 30px;
+  width: 300px;
+  padding: 10px;
+  font-size: 2rem;
 `;
 
 export default Dashboard;
