@@ -3,12 +3,7 @@ import styled from "styled-components";
 
 const DeckBuilder = () => {
   /**
-   * 1. link to dashboard in header
-   * 2. attach sideboard component
-   * 3. make "cards"  for completed decks
-   * 4. link to individual deckpage
-   *
-   *
+   * add card Search and store information
    */
 
   return <div>Card Info and Oracle Text Here</div>;

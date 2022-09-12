@@ -53,6 +53,7 @@ const HeaderWrapper = styled.div`
   padding: 40px;
   display: flex;
   background-color: #5545ba;
+  border-bottom: 1px solid #e7e7e7;
 `;
 
 const HeaderLinks = styled.div`
