@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import styled from "styled-components";
+import DeckBuilder from "./DeckBuilder";
 import Header from "./Header";
 
 const Dashboard = () => {
@@ -13,15 +14,20 @@ const Dashboard = () => {
    *
    */
 
-  return;
-  <PageWrapper>
-    <Header />
-    <Nav>
-      <Link to="deckbuilder">
-        <h1>Build Deck Here</h1>
-      </Link>
-    </Nav>
-  </PageWrapper>;
+  return (
+    <PageWrapper>
+      <Header />
+      <Nav>
+        <Link to="deckbuilder">
+          <h1>Build Deck Here</h1>
+        </Link>
+      </Nav>
+
+      <Routes>
+        <Route path="deckbuilder" element={<DeckBuilder />} />
+      </Routes>
+    </PageWrapper>
+  );
 };
 
 const PageWrapper = styled.div``;
