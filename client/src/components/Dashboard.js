@@ -2,14 +2,17 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import DeckBuilder from "./DeckBuilder";
+import Footer from "./Footer";
 import Header from "./Header";
+import SideBar from "./SideBar";
 
 const Dashboard = () => {
   /**
-   * 1. link to dashboard in header
-   * 2. attach sideboard component
-   * 3. make "cards"  for completed decks
-   * 4. link to individual deckpage
+   * TO DO
+   * 1.) when creating a deck, it appears as a card (similar to the ecosystem project)
+   * that links to the deck page
+   *
+   * 2.) Style links appropriately
    *
    *
    */
@@ -17,15 +20,9 @@ const Dashboard = () => {
   return (
     <PageWrapper>
       <Header />
-      <Nav>
-        <Link to="deckbuilder">
-          <h1>Build Deck Here</h1>
-        </Link>
-      </Nav>
-
-      <Routes>
-        <Route path="deckbuilder" element={<DeckBuilder />} />
-      </Routes>
+      <h1>Your Decks</h1>
+      <SideBar />
+      <Footer />
     </PageWrapper>
   );
 };

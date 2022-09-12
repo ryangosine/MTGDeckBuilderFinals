@@ -2,6 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const SearchBar = () => {
+  /**
+   *
+   * TO DO
+   * 1.) Connect to Api and fetch card information
+   * 2.) Style Appropriately
+   *
+   */
+
   return (
     <Wrapper>
       <form action="/" method="get">

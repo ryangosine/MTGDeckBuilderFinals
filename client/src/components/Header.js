@@ -10,8 +10,10 @@ const Header = () => {
   console.log("isAuth", isAuthenticated);
 
   /**
-   * to do.
-   * syntax for making dashboard accessable to signed in users only. terenary
+   * TO DO
+   * 1.) syntax for making dashboard accessable to signed in users only. terenary
+   * 2.) when logged in, information is sent to a mongo Db (like in slingair)
+   * 3.) style links appropriately
    *
    */
 
