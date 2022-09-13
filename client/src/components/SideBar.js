@@ -55,8 +55,8 @@ const Nav = styled.ul`
 
 export default SideBar;
 
-{
-  /* <Nav>
+// {
+/* <Nav>
   <NavLink to="/" activeClassName="current" exact>
     <li>Home</li>
     <FiHome
@@ -119,4 +119,4 @@ export default SideBar;
 </Nav>
 </Wrapper>
 ); */
-}
+// }

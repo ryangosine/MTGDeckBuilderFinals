@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const SearchBar = () => {
+const SearchBar = ({ id }) => {
   /**
    *
    * TO DO
@@ -9,6 +9,17 @@ const SearchBar = () => {
    * 2.) Style Appropriately
    *
    */
+
+  const [cardDisplay, setCardDisplay] = useState("");
+
+  const handleSubmitClick = () => {
+    fetch(`/api/get-card/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCardDisplay(data.name);
+        console.log("data", data.name);
+      });
+  };
 
   return (
     <Wrapper>
@@ -23,9 +34,7 @@ const SearchBar = () => {
           name="search"
         />
       </form>
-      <button className="button" type="submit">
-        Search
-      </button>
+      <StyledButton onClick={handleSubmitClick}>Search</StyledButton>
     </Wrapper>
   );
 };
@@ -35,11 +44,8 @@ const Wrapper = styled.div`
   width: 25rem;
   margin: auto;
   margin-top: 15rem;
-
-  .button {
-    color: black;
-    background-color: purple;
-  }
 `;
+
+const StyledButton = styled.button``;
 
 export default SearchBar;

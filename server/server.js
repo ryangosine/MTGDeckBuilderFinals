@@ -37,5 +37,5 @@ express()
     });
   })
 
-  // Node spins up our server and sets it to listen on port 8000.
+  // Node spins up our server and sets it to listen on port 3000.
   .listen(8000, () => console.log(`Listening on port 8000`));
