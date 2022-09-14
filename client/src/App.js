@@ -4,6 +4,7 @@ import GlobalStyles from "./components/GlobalStyles";
 import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
 import DeckBuilder from "./components/DeckBuilder";
+import CardFound from "./components/CardFound";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="*" element={<HomePage />} />
           <Route path="dashboard/*" element={<Dashboard />} />
           <Route path="deckbuilder/*" element={<DeckBuilder />} />
+          <Route path="cardfound/*" element={<CardFound />} />
         </Routes>
       </BrowserRouter>
     </MainWrapper>

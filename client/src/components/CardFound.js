@@ -14,15 +14,6 @@ const CardFound = () => {
    *
    */
 
-  useEffect(() => {
-    fetch(`/api/get-card/:id${reservation.data._id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setLatestCustomer(data.foundReservation);
-        setLoaded(true);
-      });
-  }, []);
-
   return <div></div>;
 };
 

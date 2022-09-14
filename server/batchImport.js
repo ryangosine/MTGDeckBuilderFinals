@@ -8,7 +8,7 @@ const options = {
   useUnifiedTopology: true,
 };
 
-const oracleCards = require("./Assets/oracle-cards-20220824210318.json");
+const oracleCards = require("");
 
 const batchImport = async () => {
   const client = new MongoClient(MONGO_URI, options);

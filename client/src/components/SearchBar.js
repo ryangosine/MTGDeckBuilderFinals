@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = ({ id }) => {
   /**
@@ -12,12 +13,19 @@ const SearchBar = ({ id }) => {
 
   const [cardDisplay, setCardDisplay] = useState("");
 
-  const handleSubmitClick = () => {
+  let navigate = useNavigate();
+
+  const handleSubmitClick = (ev) => {
+    ev.preventDefault();
+
     fetch(`/api/get-card/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
-        setCardDisplay(data.name);
-        console.log("data", data.name);
+        setCardDisplay(data);
+        console.log("data", data);
+        navigate("/cardfound");
       });
   };
 

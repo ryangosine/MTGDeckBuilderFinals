@@ -19,12 +19,15 @@ const express = require("express");
 const app = express();
 const { restart } = require("nodemon");
 
-const dbFunction = async () => {
+const auth0 = require("@auth0/auth0-react");
+
+const authLogin = async () => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
-  const db = client.db("CardInformationStorage");
+  const db = client.db("db-name");
   console.log("connected!");
-  await db.collection("oracleCards").find().toArray();
+  console.log("auth", auth0);
+  await db.collection("users").find().toArray();
   client.close();
   console.log("disconnected!");
 };
@@ -56,6 +59,7 @@ const getCard = async (req, res) => {
   //   console.log(err);
   // }
   const result = await mtg.card.find(id);
+  res.status(200).json({ status: 200, data: result });
   console.log(result.card.name);
 };
 
@@ -65,7 +69,7 @@ const getCard = async (req, res) => {
  */
 
 module.exports = {
-  dbFunction,
+  authLogin,
   getCards,
   getCard,
 };
