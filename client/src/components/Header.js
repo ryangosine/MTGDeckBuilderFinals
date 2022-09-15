@@ -1,20 +1,10 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Login from "./Login";
-// import { useAuth0 } from "@auth0/auth0-react";
+import Login from "./Pages/Login";
+import NavBar from "./NavBar/NavBar";
 
 const Header = () => {
-  // const { loginWithRedirect, user, isAuthenticated, logout } = useAuth0();
-
-  const [token, setToken] = useState();
-  if (!token) {
-    return <Login setToken={setToken} />;
-  }
-
-  // console.log("user", user);
-  // console.log("isAuth", isAuthenticated);
-
   /**
    * TO DO
    * 1.) syntax for making dashboard accessable to signed in users only. terenary
@@ -22,7 +12,7 @@ const Header = () => {
    * 3.) style links appropriately
    *
    */
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <HeaderWrapper>
       <ReturnToHome>
@@ -34,24 +24,18 @@ const Header = () => {
       </ReturnToHome>
 
       <HeaderLinks>
-        {/* <AuthButton>
-          {isAuthenticated ? (
-            <button onClick={() => logout()}>Logout</button>
-          ) : (
-            <button onClick={() => loginWithRedirect()}>Login</button>
-          )}
-        </AuthButton> */}
-        {/* {isAuthenticated ? ( */}
-        <LinkToDashBoard>
-          <nav>
-            <Link to="dashboard">
-              <h1>dashboard</h1>
-            </Link>
-          </nav>
-        </LinkToDashBoard>
-        {/* ) : (
+        <NavBar />
+        {isLoggedIn === true ? (
+          <LinkToDashBoard>
+            <nav>
+              <Link to="dashboard">
+                <h1>Dashboard</h1>
+              </Link>
+            </nav>
+          </LinkToDashBoard>
+        ) : (
           ""
-        )} */}
+        )}
       </HeaderLinks>
     </HeaderWrapper>
   );
@@ -72,11 +56,6 @@ const HeaderLinks = styled.div`
   align-items: flex-end;
 `;
 
-const AuthButton = styled.div`
-  display: flex;
-  margin-right: 50px;
-`;
-
 const ReturnToHome = styled.ul`
   display: flex;
   flex-direction: row;
@@ -95,6 +74,40 @@ const ReturnToHome = styled.ul`
 `;
 
 const LinkToDashBoard = styled.ul`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    color: white;
+    margin: 0 0.8rem;
+    font-size: 1.6rem;
+    list-style: none;
+  }
+`;
+
+const LinkToLogin = styled.ul`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    color: white;
+    margin: 0 0.8rem;
+    font-size: 1.6rem;
+    list-style: none;
+  }
+`;
+
+const LinkToRegister = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -19,19 +19,7 @@ const express = require("express");
 const app = express();
 const { restart } = require("nodemon");
 
-const auth0 = require("@auth0/auth0-react");
 const { card } = require("mtgsdk");
-
-const authLogin = async () => {
-  const client = new MongoClient(MONGO_URI, options);
-  await client.connect();
-  const db = client.db("db-name");
-  console.log("connected!");
-  console.log("auth", auth0);
-  await db.collection("users").find().toArray();
-  client.close();
-  console.log("disconnected!");
-};
 
 const getCards = async () => {
   try {
@@ -104,7 +92,6 @@ const addUser = async (req, res) => {
 };
 
 module.exports = {
-  authLogin,
   getCards,
   getCard,
   addUser,

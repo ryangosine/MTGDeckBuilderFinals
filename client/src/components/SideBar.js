@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Routes, Route, Link } from "react-router-dom";
-import DeckBuilder from "./DeckBuilder";
-import Profile from "./Profile";
+import DeckBuilder from "./Pages/DeckBuilder";
+import Profile from "./Pages/Profile";
 
 const SideBar = () => {
   return (

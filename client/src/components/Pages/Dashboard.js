@@ -2,9 +2,9 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import DeckBuilder from "./DeckBuilder";
-import Footer from "./Footer";
-import Header from "./Header";
-import SideBar from "./SideBar";
+import Footer from "../Footer";
+import Header from "../Header";
+import SideBar from "../SideBar";
 
 const Dashboard = () => {
   /**

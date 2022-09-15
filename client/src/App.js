@@ -2,18 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyles from "./components/GlobalStyles";
-import Login from "./components/Login";
-import HomePage from "./components/HomePage";
-import Dashboard from "./components/Dashboard";
-import DeckBuilder from "./components/DeckBuilder";
-import CardFound from "./components/CardFound";
-import Profile from "./components/Profile";
+import Dashboard from "./components/Pages/Dashboard";
+import DeckBuilder from "./components/Pages/DeckBuilder";
+import CardFound from "./components/Pages/CardFound";
+import Profile from "./components/Pages/Profile";
+import Login from "./components/Pages/Login";
+import Register from "./components/Pages/Register";
+import HomePage from "./components/Pages/HomePage";
 
 const App = () => {
-  // const [token, setToken] = useState();
-  // if (!token) {
-  //   return <Login setToken={setToken} />;
-  // }
   return (
     <MainWrapper>
       <GlobalStyles />
@@ -24,6 +21,8 @@ const App = () => {
           <Route path="deckbuilder/*" element={<DeckBuilder />} />
           <Route path="cardfound/*" element={<CardFound />} />
           <Route path="profile/:id" element={<Profile />} />
+          <Route path="login/*" element={<Login />} />
+          <Route path="register/*" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </MainWrapper>
