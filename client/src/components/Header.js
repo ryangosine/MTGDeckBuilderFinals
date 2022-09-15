@@ -1,12 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import Login from "./Login";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
-  const { loginWithRedirect, user, isAuthenticated, logout } = useAuth0();
+  // const { loginWithRedirect, user, isAuthenticated, logout } = useAuth0();
 
-  console.log("user", user);
+  const [token, setToken] = useState();
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
+
+  // console.log("user", user);
   // console.log("isAuth", isAuthenticated);
 
   /**
@@ -28,24 +34,24 @@ const Header = () => {
       </ReturnToHome>
 
       <HeaderLinks>
-        <AuthButton>
+        {/* <AuthButton>
           {isAuthenticated ? (
             <button onClick={() => logout()}>Logout</button>
           ) : (
             <button onClick={() => loginWithRedirect()}>Login</button>
           )}
-        </AuthButton>
-        {isAuthenticated ? (
-          <LinkToDashBoard>
-            <nav>
-              <Link to="dashboard">
-                <h1>dashboard</h1>
-              </Link>
-            </nav>
-          </LinkToDashBoard>
-        ) : (
+        </AuthButton> */}
+        {/* {isAuthenticated ? ( */}
+        <LinkToDashBoard>
+          <nav>
+            <Link to="dashboard">
+              <h1>dashboard</h1>
+            </Link>
+          </nav>
+        </LinkToDashBoard>
+        {/* ) : (
           ""
-        )}
+        )} */}
       </HeaderLinks>
     </HeaderWrapper>
   );

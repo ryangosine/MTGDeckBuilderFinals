@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyles from "./components/GlobalStyles";
+import Login from "./components/Login";
 import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
 import DeckBuilder from "./components/DeckBuilder";
@@ -8,6 +10,10 @@ import CardFound from "./components/CardFound";
 import Profile from "./components/Profile";
 
 const App = () => {
+  // const [token, setToken] = useState();
+  // if (!token) {
+  //   return <Login setToken={setToken} />;
+  // }
   return (
     <MainWrapper>
       <GlobalStyles />
