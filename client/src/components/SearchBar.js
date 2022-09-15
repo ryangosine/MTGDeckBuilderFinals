@@ -12,7 +12,7 @@ const SearchBar = ({ id }) => {
    */
 
   const [cardDisplay, setCardDisplay] = useState("");
-  const [searchTerm, setDerachTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   let navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const SearchBar = ({ id }) => {
           value={searchTerm}
           placeholder="Enter Card Name"
           name="search"
-          onChange={(event) => setDerachTerm(event.target.value)}
+          onChange={(event) => setSearchTerm(event.target.value)}
         />
       </form>
       <StyledButton type="submit" onClick={handleSubmitClick}>

@@ -2,7 +2,7 @@
 
 const express = require("express");
 const morgan = require("morgan");
-const { getCards, getCard } = require("./handlers");
+const { getCards, getCard, addUser } = require("./handlers");
 
 // const cors = require("cors");
 // const multer = require("multer");
@@ -25,6 +25,7 @@ express()
 
   .get("/api/get-cards", getCards)
   .get("/api/get-card/:id", getCard)
+  .post("/api/add-user", addUser)
 
   // ---------------------------------
   // Nothing to modify below this line
