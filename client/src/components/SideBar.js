@@ -7,15 +7,21 @@ import Profile from "./Profile";
 const SideBar = () => {
   return (
     <Wrapper>
-      <Nav>
-        <Link to="deckbuilder">
-          <h1>DeckBuilder</h1>
-        </Link>
+      <LinkToDeckBuilder>
+        <nav>
+          <Link to="deckbuilder">
+            <h1>DeckBuilder</h1>
+          </Link>
+        </nav>
+      </LinkToDeckBuilder>
 
-        <Link to="profile">
-          <h1>Profile</h1>
-        </Link>
-      </Nav>
+      <LinkToProfile>
+        <nav>
+          <Link to="profile">
+            <h1>Profile</h1>
+          </Link>
+        </nav>
+      </LinkToProfile>
 
       <Routes>
         <Route path="deckbuilder" element={<DeckBuilder />} />
@@ -51,6 +57,14 @@ const Nav = styled.ul`
     position: relative;
     list-style: none;
   }
+`;
+
+const LinkToProfile = styled.ul`
+  display: flex;
+`;
+
+const LinkToDeckBuilder = styled.ul`
+  display: flex;
 `;
 
 export default SideBar;

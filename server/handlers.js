@@ -20,6 +20,7 @@ const app = express();
 const { restart } = require("nodemon");
 
 const auth0 = require("@auth0/auth0-react");
+const { card } = require("mtgsdk");
 
 const authLogin = async () => {
   const client = new MongoClient(MONGO_URI, options);
@@ -50,17 +51,16 @@ const getCards = async () => {
 
 const getCard = async (req, res) => {
   const { id } = req.params;
-  // try {
-  //   const result = await request("https://api.magicthegathering.io/v1/cards");
-  //   const singleCard = await result.json();
-  //   console.log("singleCard", singleCard);
-  //   console.log("result", result);
-  // } catch (err) {
-  //   console.log(err);
-  // }
-  const result = await mtg.card.find(id);
-  res.status(200).json({ status: 200, data: result });
-  console.log(result.card.name);
+  console.log("id", id);
+  try {
+    const result = await mtg.card.all({ name: id }).on("data", function (card) {
+      console.log("card.name", card.name);
+      res.status(200).json({ status: 200, data: card });
+    });
+    console.log("RESULT", result);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 /**
@@ -73,3 +73,12 @@ module.exports = {
   getCards,
   getCard,
 };
+
+// try {
+//   const result = await request("https://api.magicthegathering.io/v1/cards");
+//   const singleCard = await result.json();
+//   console.log("singleCard", singleCard);
+//   console.log("result", result);
+// } catch (err) {
+//   console.log(err);
+// }

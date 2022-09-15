@@ -12,13 +12,14 @@ const SearchBar = ({ id }) => {
    */
 
   const [cardDisplay, setCardDisplay] = useState("");
+  const [searchTerm, setDerachTerm] = useState("");
 
   let navigate = useNavigate();
 
   const handleSubmitClick = (ev) => {
     ev.preventDefault();
 
-    fetch(`/api/get-card/${id}`)
+    fetch(`/api/get-card/${searchTerm}`)
       .then((res) => {
         return res.json();
       })
@@ -31,18 +32,22 @@ const SearchBar = ({ id }) => {
 
   return (
     <Wrapper>
-      <form action="/" method="get">
+      <form>
         <label htmlFor="card-search">
           <span style={{ marginRight: "10px" }}>Search For A Card:</span>
         </label>
         <input
           type="text"
           id="card-search"
+          value={searchTerm}
           placeholder="Enter Card Name"
           name="search"
+          onChange={(event) => setDerachTerm(event.target.value)}
         />
       </form>
-      <StyledButton onClick={handleSubmitClick}>Search</StyledButton>
+      <StyledButton type="submit" onClick={handleSubmitClick}>
+        Search
+      </StyledButton>
     </Wrapper>
   );
 };

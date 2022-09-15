@@ -7,7 +7,7 @@ const Header = () => {
   const { loginWithRedirect, user, isAuthenticated, logout } = useAuth0();
 
   console.log("user", user);
-  console.log("isAuth", isAuthenticated);
+  // console.log("isAuth", isAuthenticated);
 
   /**
    * TO DO
@@ -35,14 +35,17 @@ const Header = () => {
             <button onClick={() => loginWithRedirect()}>Login</button>
           )}
         </AuthButton>
-
-        <LinkToDashBoard>
-          <nav>
-            <Link to="dashboard">
-              <h1>dashboard</h1>
-            </Link>
-          </nav>
-        </LinkToDashBoard>
+        {isAuthenticated ? (
+          <LinkToDashBoard>
+            <nav>
+              <Link to="dashboard">
+                <h1>dashboard</h1>
+              </Link>
+            </nav>
+          </LinkToDashBoard>
+        ) : (
+          ""
+        )}
       </HeaderLinks>
     </HeaderWrapper>
   );
@@ -94,7 +97,7 @@ const LinkToDashBoard = styled.ul`
     text-decoration: none;
   }
 
-  li {
+  h1 {
     color: white;
     margin: 0 0.8rem;
     font-size: 1.6rem;
