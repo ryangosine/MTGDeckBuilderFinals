@@ -7,7 +7,8 @@ import Input from "../Input";
 import Button from "../Button";
 import { CurrentUserContext } from "../CurrentUserContext";
 
-const Register = ({ currentUser, setCurrentUser }) => {
+const Register = () => {
+  const [newUser, setNewUser] = useState({});
   const [givenName, setGivenName] = useState("");
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
@@ -38,8 +39,8 @@ const Register = ({ currentUser, setCurrentUser }) => {
         res.json();
       })
       .then((data) => {
-        setCurrentUser(data);
-        // navigate("dashboard");
+        setNewUser(data);
+        navigate("dashboard");
       });
   };
 
@@ -48,8 +49,8 @@ const Register = ({ currentUser, setCurrentUser }) => {
       <PageHeader to="/">Back To Home</PageHeader>
       <EntryCard>
         <h2>Enter The Multiverse</h2>
-        {/* onSubmit={(e) => e.preventDefault()} */}
-        <form>
+
+        <form onSubmit={(e) => e.preventDefault()}>
           <InputGroup>
             <label htmlFor="signup-name">Full Name</label>
             <Input

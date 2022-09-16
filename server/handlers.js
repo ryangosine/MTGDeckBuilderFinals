@@ -66,7 +66,7 @@ const addUser = async (req, res) => {
     console.log(".connected!");
 
     const details = {
-      givenName: req.body.name,
+      givenName: req.body.givenName,
       userName: req.body.userName,
       passWord: req.body.passWord,
       email: req.body.email,
