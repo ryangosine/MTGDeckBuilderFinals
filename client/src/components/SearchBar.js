@@ -53,7 +53,7 @@ const SearchBar = () => {
         <nav>
           <button type="submit" onClick={(ev) => handleSubmitClick(ev)}>
             <Link to="cardfound">
-              <FiSearch />
+              <FiSearch style={{ fontSize: "2rem" }} />
             </Link>
           </button>
         </nav>
@@ -71,6 +71,10 @@ const Wrapper = styled.div`
   width: 25rem;
   margin: auto;
   margin-top: 15rem;
+
+  button {
+    padding: 13px;
+  }
 `;
 
 // const button = styled(Link)``;

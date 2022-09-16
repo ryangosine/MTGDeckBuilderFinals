@@ -4,12 +4,14 @@ import styled from "styled-components";
 import Footer from "../Footer";
 import Header from "../Header";
 import { CardContext } from "../CardContext";
+// import SpinnerIcon from "../SpinnerIcon"
 
 const CardFound = () => {
   let params = useParams();
 
   const { cardDisplay, setCardDisplay, searchTerm, setSearchTerm } =
     useContext(CardContext);
+
   /**
    *
    *  TO DO
@@ -21,30 +23,35 @@ const CardFound = () => {
    *
    */
   console.log("cardDisplay", cardDisplay);
-  return (
-    <PageWrapper>
-      <Header />
-      <DetailsWrapper>
-        <NameAndCardImage>
-          <Name>{cardDisplay.data.name}</Name>
-          <CardImage src={cardDisplay.data.imageUrl} />
-        </NameAndCardImage>
 
-        <CardDetails>
-          <Title>Details</Title>
-          <ConvertedManaCost>
-            Mana Cost: {cardDisplay.data.manaCost}
-          </ConvertedManaCost>
-          <ManaCost>Converted Mana Cost: {cardDisplay.data.cmc}</ManaCost>
-          <OracleText>Card Text: {cardDisplay.data.text}</OracleText>
-          <Type>Types: {cardDisplay.data.types}</Type>
-          <Rarity>Rarity: {cardDisplay.data.rarity}</Rarity>
-          <Artist>Artist: {cardDisplay.data.artist}</Artist>
-        </CardDetails>
-      </DetailsWrapper>
-      <Footer />
-    </PageWrapper>
-  );
+  if (!cardDisplay) {
+    return <>Loading</>;
+  } else {
+    return (
+      <PageWrapper>
+        <Header />
+        <DetailsWrapper>
+          <NameAndCardImage>
+            <Name>{cardDisplay.data.name}</Name>
+            <CardImage src={cardDisplay.data.imageUrl} />
+          </NameAndCardImage>
+
+          <CardDetails>
+            <Title>Details</Title>
+            <ConvertedManaCost>
+              Mana Cost: {cardDisplay.data.manaCost}
+            </ConvertedManaCost>
+            <ManaCost>Converted Mana Cost: {cardDisplay.data.cmc}</ManaCost>
+            <OracleText>Card Text: {cardDisplay.data.text}</OracleText>
+            <Type>Types: {cardDisplay.data.types}</Type>
+            <Rarity>Rarity: {cardDisplay.data.rarity}</Rarity>
+            <Artist>Artist: {cardDisplay.data.artist}</Artist>
+          </CardDetails>
+        </DetailsWrapper>
+        <Footer />
+      </PageWrapper>
+    );
+  }
 };
 
 const PageWrapper = styled.div``;
