@@ -5,15 +5,15 @@ import EntryCard from "../EntryCard/EntryCard";
 import InputGroup from "../InputGroup/InputGroup";
 import Input from "../Input";
 import Button from "../Button";
+import { CurrentUserContext } from "../CurrentUserContext";
 
-const Register = (currentUser, setCurrentUser) => {
+const Register = ({ currentUser, setCurrentUser }) => {
   const [givenName, setGivenName] = useState("");
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
   const [email, setEmail] = useState("");
 
   let navigate = useNavigate();
-
   const submit = (ev) => {
     console.log("entered submit func");
 
@@ -21,7 +21,10 @@ const Register = (currentUser, setCurrentUser) => {
 
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify({
         givenName: givenName,
         userName: userName,
@@ -32,7 +35,7 @@ const Register = (currentUser, setCurrentUser) => {
 
     fetch("/api/add-user", requestOptions)
       .then((res) => {
-        return res.json();
+        res.json();
       })
       .then((data) => {
         setCurrentUser(data);

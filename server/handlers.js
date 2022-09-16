@@ -8,6 +8,8 @@ const { MongoClient } = require("mongodb");
 const ObjectId = require("mongodb").ObjectId;
 require("dotenv").config();
 const { MONGO_URI } = process.env;
+console.log("mongoURI", MONGO_URI);
+
 const request = require("request-promise");
 const options = {
   useNewUrlParser: true,
@@ -60,7 +62,7 @@ const addUser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
-    const db = client.db("MtGDeckBuilderFinal");
+    const db = client.db("DatabaseInformation");
     console.log(".connected!");
 
     const details = {
@@ -71,11 +73,12 @@ const addUser = async (req, res) => {
     };
 
     await db.collection("users").insertOne(details);
+    console.log("details", details);
 
     res.status(200).json({
       status: 200,
       data: details,
-      message: "Reservation Successfully Added!",
+      message: "User Successfully Registered",
     });
   } catch (err) {
     console.log(err.stack);

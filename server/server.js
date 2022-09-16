@@ -1,11 +1,9 @@
 "use strict";
 
 const express = require("express");
-
 const morgan = require("morgan");
-
+const { users } = require("./database");
 const { getCards, getCard, addUser } = require("./handlers");
-const { application } = require("express");
 
 // const cors = require("cors");
 // const multer = require("multer");

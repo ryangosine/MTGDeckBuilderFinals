@@ -2,13 +2,13 @@ const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
 const { MONGO_URI } = process.env;
-
+console.log("mongoURI", MONGO_URI);
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
-const users = require("./database");
+const { users } = require("./database");
 
 const batchImport = async () => {
   const client = new MongoClient(MONGO_URI, options);
@@ -17,7 +17,7 @@ const batchImport = async () => {
     const db = client.db("DatabaseInformation");
     console.log(".connected!");
 
-    await db.collection("users").insertOne(users);
+    await db.collection("users").insertMany(users);
   } catch (err) {
     console.log(err.stack);
   }
