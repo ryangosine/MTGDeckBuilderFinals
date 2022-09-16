@@ -5,9 +5,7 @@ const NavBar = ({ children }) => {
   return (
     <StyledNavBar>
       <NavLink to="login">Log in</NavLink>
-      <NavLink to="register" fill>
-        Register
-      </NavLink>
+      <NavLink to="register">Register</NavLink>
     </StyledNavBar>
   );
 };

@@ -9,7 +9,7 @@ import Button from "../Button";
 const Login = () => {
   return (
     <EntryPage>
-      <PageHeader to="/">SOME TEXT HERE</PageHeader>
+      <PageHeader to="/">Back To Home</PageHeader>
       <EntryCard>
         <h2>Log In</h2>
         <form onSubmit={(e) => e.preventDefault()}>

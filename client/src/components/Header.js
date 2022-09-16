@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 import NavBar from "./NavBar/NavBar";
+import { CurrentUserContext } from "./CurrentUserContext";
 
 const Header = () => {
   /**
@@ -12,7 +14,18 @@ const Header = () => {
    * 3.) style links appropriately
    *
    */
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const {
+    currentUser,
+    setCurrentUser,
+    loggedIn,
+    setLoggedIn,
+    loggedOut,
+    setLoggedOut,
+  } = useContext(CurrentUserContext);
+
+  // let navigate = useNavigate();
+  // navigate("login");
+
   return (
     <HeaderWrapper>
       <ReturnToHome>
@@ -24,18 +37,30 @@ const Header = () => {
       </ReturnToHome>
 
       <HeaderLinks>
-        <NavBar />
-        {/* {isLoggedIn === true ? ( */}
-        <LinkToDashBoard>
-          <nav>
-            <Link to="dashboard">
-              <h1>Dashboard</h1>
-            </Link>
-          </nav>
-        </LinkToDashBoard>
-        {/* ) : (
+        <NavBar>
+          <LinkToLogin>
+            <nav>
+              <Link to="login" element={<Login />} />
+            </nav>
+          </LinkToLogin>
+          <LinkToRegister>
+            <nav>
+              <Link to="register" element={<Register />} />
+            </nav>
+          </LinkToRegister>
+        </NavBar>
+
+        {loggedIn === true ? (
+          <LinkToDashBoard>
+            <nav>
+              <Link to="dashboard">
+                <h1>Dashboard</h1>
+              </Link>
+            </nav>
+          </LinkToDashBoard>
+        ) : (
           ""
-        )} */}
+        )}
       </HeaderLinks>
     </HeaderWrapper>
   );

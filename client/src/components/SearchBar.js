@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
 import CardFound from "./Pages/CardFound";
 import { CardContext } from "./CardContext";
+import { FiSearch } from "react-icons/fi";
 
 const SearchBar = () => {
   /**
@@ -28,7 +29,7 @@ const SearchBar = () => {
         console.log("data", data);
         setCardDisplay(data);
         console.log("cardDisplay", cardDisplay);
-        navigate("/cardfound");
+        navigate("cardfound");
       });
   };
 
@@ -51,7 +52,9 @@ const SearchBar = () => {
       <div>
         <nav>
           <button type="submit" onClick={(ev) => handleSubmitClick(ev)}>
-            <Link to="cardfound">Search</Link>
+            <Link to="cardfound">
+              <FiSearch />
+            </Link>
           </button>
         </nav>
       </div>

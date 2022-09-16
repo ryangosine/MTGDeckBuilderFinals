@@ -16,7 +16,7 @@ export const StyledNavBar = styled.nav`
 export const NavLink = styled(Link)`
   color: inherit;
   margin-left: 16px;
-  ${(props) =>
+  /* ${(props) =>
     props.fill &&
     css`
       padding: 8px 16px;
@@ -26,5 +26,5 @@ export const NavLink = styled(Link)`
       &:hover {
         background-color: #0072ff;
       }
-    `}
+    `} */
 `;
