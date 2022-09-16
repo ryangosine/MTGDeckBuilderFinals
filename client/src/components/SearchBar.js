@@ -26,11 +26,10 @@ const SearchBar = () => {
     fetch(`/api/get-card/${searchTerm}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
         setCardDisplay(data);
-        console.log("cardDisplay", cardDisplay);
         navigate("cardfound");
       });
+    console.log("cardDisplay", cardDisplay);
   };
 
   return (

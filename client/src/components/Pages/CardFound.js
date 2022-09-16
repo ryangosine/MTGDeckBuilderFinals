@@ -12,16 +12,10 @@ const CardFound = () => {
   const { cardDisplay, setCardDisplay, searchTerm, setSearchTerm } =
     useContext(CardContext);
 
-  /**
-   *
-   *  TO DO
-   * Links from the search button on the main page
-   * 1.) Display image of card found
-   * 2.) display text and information gathered from the API
-   *
-   *
-   *
-   */
+  useEffect(() => {
+    localStorage.setItem("cardDisplay", JSON.stringify(cardDisplay));
+  }, [cardDisplay]);
+
   console.log("cardDisplay", cardDisplay);
 
   if (!cardDisplay) {

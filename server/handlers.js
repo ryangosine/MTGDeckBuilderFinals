@@ -60,23 +60,17 @@ const addUser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
-    const db = client.db("db-name");
+    const db = client.db("MtGDeckBuilderFinal");
     console.log(".connected!");
 
     const details = {
-      name: req.body.name,
+      givenName: req.body.name,
       userName: req.body.userName,
       passWord: req.body.passWord,
       email: req.body.email,
     };
 
     await db.collection("users").insertOne(details);
-    const update = await db
-      .collection("flights")
-      .updateOne(
-        { flight: details.flight, "seats.id": details.seat },
-        { $set: { "seats.$.isAvailable": false } }
-      );
 
     res.status(200).json({
       status: 200,
