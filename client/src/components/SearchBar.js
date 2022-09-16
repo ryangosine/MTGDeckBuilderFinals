@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
+import CardFound from "./Pages/CardFound";
+import { CardContext } from "./CardContext";
 
-const SearchBar = ({ id }) => {
+const SearchBar = () => {
   /**
    *
    * TO DO
@@ -11,8 +14,8 @@ const SearchBar = ({ id }) => {
    *
    */
 
-  const [cardDisplay, setCardDisplay] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const { cardDisplay, setCardDisplay, searchTerm, setSearchTerm } =
+    useContext(CardContext);
 
   let navigate = useNavigate();
 
@@ -20,12 +23,11 @@ const SearchBar = ({ id }) => {
     ev.preventDefault();
 
     fetch(`/api/get-card/${searchTerm}`)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        setCardDisplay(data);
         console.log("data", data);
+        setCardDisplay(data);
+        console.log("cardDisplay", cardDisplay);
         navigate("/cardfound");
       });
   };
@@ -45,9 +47,18 @@ const SearchBar = ({ id }) => {
           onChange={(event) => setSearchTerm(event.target.value)}
         />
       </form>
-      <StyledButton type="submit" onClick={handleSubmitClick}>
-        Search
-      </StyledButton>
+
+      <div>
+        <nav>
+          <button type="submit" onClick={(ev) => handleSubmitClick(ev)}>
+            <Link to="cardfound">Search</Link>
+          </button>
+        </nav>
+      </div>
+
+      <Routes>
+        <Route path="cardfound" element={<CardFound />}></Route>
+      </Routes>
     </Wrapper>
   );
 };
@@ -59,6 +70,6 @@ const Wrapper = styled.div`
   margin-top: 15rem;
 `;
 
-const StyledButton = styled.button``;
+// const button = styled(Link)``;
 
 export default SearchBar;

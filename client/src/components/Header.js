@@ -25,17 +25,17 @@ const Header = () => {
 
       <HeaderLinks>
         <NavBar />
-        {isLoggedIn === true ? (
-          <LinkToDashBoard>
-            <nav>
-              <Link to="dashboard">
-                <h1>Dashboard</h1>
-              </Link>
-            </nav>
-          </LinkToDashBoard>
-        ) : (
+        {/* {isLoggedIn === true ? ( */}
+        <LinkToDashBoard>
+          <nav>
+            <Link to="dashboard">
+              <h1>Dashboard</h1>
+            </Link>
+          </nav>
+        </LinkToDashBoard>
+        {/* ) : (
           ""
-        )}
+        )} */}
       </HeaderLinks>
     </HeaderWrapper>
   );
