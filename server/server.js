@@ -3,7 +3,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const { users } = require("./database");
-const { getCards, getCard, addUser } = require("./handlers");
+const { getCards, getCard, getUser, addUser } = require("./handlers");
 
 // const cors = require("cors");
 // const multer = require("multer");
@@ -26,6 +26,7 @@ express()
 
   .get("/api/get-cards", getCards)
   .get("/api/get-card/:id", getCard)
+  .get("/api/get-user/:id", getUser)
   .post("/api/add-user", addUser)
 
   // ---------------------------------

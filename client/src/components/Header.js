@@ -22,9 +22,10 @@ const Header = () => {
     loggedOut,
     setLoggedOut,
   } = useContext(CurrentUserContext);
-
   // let navigate = useNavigate();
   // navigate("login");
+
+  console.log("loggedIn", loggedIn);
 
   return (
     <HeaderWrapper>
@@ -49,18 +50,6 @@ const Header = () => {
             </nav>
           </LinkToRegister>
         </NavBar>
-
-        {loggedIn === true ? (
-          <LinkToDashBoard>
-            <nav>
-              <Link to="dashboard">
-                <h1>Dashboard</h1>
-              </Link>
-            </nav>
-          </LinkToDashBoard>
-        ) : (
-          ""
-        )}
       </HeaderLinks>
     </HeaderWrapper>
   );

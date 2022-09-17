@@ -14,17 +14,21 @@ export const StyledNavBar = styled.nav`
 `;
 
 export const NavLink = styled(Link)`
-  color: inherit;
-  margin-left: 16px;
-  /* ${(props) =>
-    props.fill &&
-    css`
-      padding: 8px 16px;
-      border-radius: 4px;
-      background-color: #2f8bfd;
-      transition: background-color 0.2s;
-      &:hover {
-        background-color: #0072ff;
-      }
-    `} */
+  width: ${(props) => (props.full ? "100%" : null)};
+  min-width: 64px;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 16px;
+  outline: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.02857rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #ffffff;
+  background-color: #2f8bfd;
+  &:hover {
+    background-color: #0072ff;
+  }
 `;

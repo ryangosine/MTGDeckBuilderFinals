@@ -8,7 +8,6 @@ const { MongoClient } = require("mongodb");
 const ObjectId = require("mongodb").ObjectId;
 require("dotenv").config();
 const { MONGO_URI } = process.env;
-console.log("mongoURI", MONGO_URI);
 
 const request = require("request-promise");
 const options = {
@@ -36,7 +35,7 @@ const getCards = async () => {
 // getCards().then((cardPool) => console.log(cardPool));
 
 /**
- *  returns a single card
+ *  returns a single card from external database
  */
 
 const getCard = async (req, res) => {
@@ -54,9 +53,38 @@ const getCard = async (req, res) => {
 };
 
 /**
- * make endpoints to push deck collections to mongo
- *
+ * gets user from database
  */
+
+const getUser = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  const { email } = req.params;
+  try {
+    await client.connect();
+    const db = client.db("DatabaseInformation");
+    console.log(".connected!");
+
+    const query = { _id: ObjectId(email) };
+    console.log("query", query);
+
+    const foundUser = await db.collection("users").findOne(query.email);
+    console.log("foundUser", foundUser);
+    // || foundUser.length === 0
+    if (foundUser === undefined) {
+      res.status(404).json({ status: 404, message: "User Not Found" });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        data: query,
+        foundUser,
+        message: "Found ya!",
+      });
+    }
+  } catch (err) {
+    console.log(err.stack);
+    res.status(400).json({ status: 400, message: err.message });
+  }
+};
 
 const addUser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
@@ -73,7 +101,6 @@ const addUser = async (req, res) => {
     };
 
     await db.collection("users").insertOne(details);
-    console.log("details", details);
 
     res.status(200).json({
       status: 200,
@@ -91,6 +118,7 @@ const addUser = async (req, res) => {
 module.exports = {
   getCards,
   getCard,
+  getUser,
   addUser,
 };
 

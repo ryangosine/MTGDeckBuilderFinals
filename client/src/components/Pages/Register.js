@@ -40,7 +40,7 @@ const Register = () => {
       })
       .then((data) => {
         setNewUser(data);
-        navigate("dashboard");
+        navigate("/");
       });
   };
 
