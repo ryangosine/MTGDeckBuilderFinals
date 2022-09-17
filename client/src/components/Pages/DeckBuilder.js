@@ -100,19 +100,21 @@ const DeckBuilder = () => {
 };
 
 const PageWrapper = styled.div``;
-const FormWrapper = styled.div``;
+const FormWrapper = styled.div`
+  width: 100vh;
+`;
 const DeckDetails = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10px;
 `;
 const CardImage = styled.img`
-  width: 25%;
+  width: 15%;
   height: auto;
 `;
 
 const CardButton = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 export default DeckBuilder;
