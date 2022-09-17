@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import GlobalStyles from "./components/GlobalStyles";
 import Dashboard from "./components/Pages/Dashboard";
 import DeckBuilder from "./components/Pages/DeckBuilder";
@@ -17,10 +17,12 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<HomePage />} />
-          <Route path="dashboard/*" element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />}>
+            <Route path="dashboard" element={<Link to="../dashboard" />} />
+          </Route>
           <Route path="deckbuilder/*" element={<DeckBuilder />} />
           <Route path="cardfound/*" element={<CardFound />} />
-          <Route path="profile/:id" element={<Profile />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="login/" element={<Login />} />
           <Route path="register/" element={<Register />} />
         </Routes>

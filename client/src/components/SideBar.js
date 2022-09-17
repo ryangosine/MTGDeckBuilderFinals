@@ -20,7 +20,7 @@ const SideBar = () => {
 
       <LinkToProfile>
         <nav>
-          <Link to="profile">
+          <Link to="../profile">
             <h1>Profile</h1>
           </Link>
         </nav>
@@ -64,10 +64,13 @@ const Nav = styled.ul`
 
 const LinkToProfile = styled.ul`
   display: flex;
+
+  margin: 20px;
 `;
 
 const LinkToDeckBuilder = styled.ul`
   display: flex;
+  margin: 20px;
 `;
 
 export default SideBar;

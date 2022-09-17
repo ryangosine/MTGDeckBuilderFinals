@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
@@ -7,14 +7,6 @@ import { CardContext } from "./CardContext";
 import { FiSearch } from "react-icons/fi";
 
 const SearchBar = () => {
-  /**
-   *
-   * TO DO
-   * 1.) Connect to Api and fetch card information
-   * 2.) Style Appropriately
-   *
-   */
-
   const { cardDisplay, setCardDisplay, searchTerm, setSearchTerm } =
     useContext(CardContext);
 

@@ -22,7 +22,6 @@ const Login = () => {
     setLoggedOut,
   } = useContext(CurrentUserContext);
 
-  console.log("logged", loggedIn);
   let navigate = useNavigate();
 
   const [userName, setUserName] = useState(() => {
@@ -40,7 +39,7 @@ const Login = () => {
         console.log("data in login component", data);
         navigate("dashboard");
       });
-  }, []);
+  }, [currentUser]);
 
   const handleSubmit = (ev) => {
     setUserName(ev.target.value);

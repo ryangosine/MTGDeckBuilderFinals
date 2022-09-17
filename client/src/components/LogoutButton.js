@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CurrentUserContext } from "./CurrentUserContext";
 
@@ -12,9 +13,11 @@ const LogOutButton = () => {
     setLoggedOut,
   } = useContext(CurrentUserContext);
 
+  let navigate = useNavigate();
+
   const handleLogout = () => {
     setLoggedIn(false);
-    console.log("currentUser", currentUser);
+    navigate("/");
   };
 
   return (

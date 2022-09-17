@@ -26,8 +26,6 @@ const Header = () => {
   // let navigate = useNavigate();
   // navigate("login");
 
-  console.log("loggedIn", loggedIn);
-
   return (
     <HeaderWrapper>
       <ReturnToHome>
