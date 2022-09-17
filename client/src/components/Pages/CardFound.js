@@ -7,18 +7,27 @@ import { CardContext } from "../CardContext";
 // import SpinnerIcon from "../SpinnerIcon"
 
 const CardFound = () => {
-  let params = useParams();
-
+  const [loading, setLoading] = useState(true);
+  let { id } = useParams();
+  console.log("id", id);
   const { cardDisplay, setCardDisplay, searchTerm, setSearchTerm } =
     useContext(CardContext);
 
+  console.log("cardDisplay", cardDisplay.data);
+
   useEffect(() => {
-    localStorage.setItem("cardDisplay", JSON.stringify(cardDisplay));
-  }, [cardDisplay]);
+    setLoading(true);
+    fetch(`/api/get-card/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCardDisplay(data);
+        setLoading(false);
+        console.log("data", data);
+        console.log("cardDisplay", cardDisplay);
+      });
+  }, []);
 
-  console.log("cardDisplay", cardDisplay);
-
-  if (!cardDisplay) {
+  if (loading) {
     return <>Loading</>;
   } else {
     return (

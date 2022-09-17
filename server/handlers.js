@@ -58,25 +58,26 @@ const getCard = async (req, res) => {
 
 const getUser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const { email } = req.params;
+  const { email, password } = req.body;
   try {
     await client.connect();
     const db = client.db("DatabaseInformation");
     console.log(".connected!");
 
-    const query = { _id: ObjectId(email) };
-    console.log("query", query);
+    console.log("email", email);
+    console.log("password", password);
 
-    const foundUser = await db.collection("users").findOne(query.email);
+    const foundUser = await db
+      .collection("users")
+      .findOne({ email: email, passWord: password });
     console.log("foundUser", foundUser);
-    // || foundUser.length === 0
+
     if (foundUser === undefined) {
       res.status(404).json({ status: 404, message: "User Not Found" });
     } else {
       return res.status(200).json({
         status: 200,
-        data: query,
-        foundUser,
+        data: foundUser,
         message: "Found ya!",
       });
     }
@@ -96,7 +97,7 @@ const addUser = async (req, res) => {
     const details = {
       givenName: req.body.givenName,
       userName: req.body.userName,
-      passWord: req.body.passWord,
+      password: req.body.passWord,
       email: req.body.email,
     };
 
@@ -107,6 +108,22 @@ const addUser = async (req, res) => {
       data: details,
       message: "User Successfully Registered",
     });
+  } catch (err) {
+    console.log(err.stack);
+    res.status(400).json({ status: 400, message: err.message });
+  }
+  client.close();
+  console.log(".disconnected!");
+};
+
+const addCard = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  try {
+    await client.connect();
+    const db = client.db("DatabaseInformation");
+    console.log(".connected!");
+
+    await db.collection("decks").insertOne(details);
   } catch (err) {
     console.log(err.stack);
     res.status(400).json({ status: 400, message: err.message });

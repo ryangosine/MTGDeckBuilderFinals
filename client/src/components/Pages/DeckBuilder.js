@@ -6,42 +6,51 @@ import Footer from "../Footer";
 import Header from "../Header";
 import { FiSearch } from "react-icons/fi";
 import Dashboard from "./Dashboard";
-
+import { CurrentUserContext } from "../CurrentUserContext";
 const DeckBuilder = () => {
   const { cardDisplay, setCardDisplay, searchTerm, setSearchTerm } =
     useContext(CardContext);
 
+  const { currentUser } = useContext(CurrentUserContext);
+
+  const [loading, setLoading] = useState(false);
   const [cardList, setCardList] = useState([]);
+
   let navigate = useNavigate();
 
-  let handleSubmitClick = (ev) => {
+  let handleSubmitClick = async (ev) => {
     ev.preventDefault();
 
-    fetch(`/api/get-card/${searchTerm}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCardDisplay(data);
-      });
-    console.log("cardDisplay", cardDisplay);
+    setLoading(true);
+    const res = await fetch(`/api/get-card/${searchTerm}`);
+    const json = await res.json();
+    const { data } = json;
+    setCardDisplay(data);
+    setLoading(false);
 
-    let addCard = (ev) => {
-      ev.preventDefault();
+    const newCardList = [...cardList, data];
+    console.log("newCardList", newCardList);
+    if (data != "") {
+      setCardList(newCardList);
+    }
 
-      let list = cardList;
-      const newCard = document.getElementById("addInput");
-      const form = document.getElementById("addCardForm");
-
-      if (newCard.value != "") {
-        list.push(newCard.value);
-        setCardList({ list: list });
-        newCard.classList.remove("is-danger");
-        form.reset();
-      } else {
-        newCard.classList.add("is-danger");
-      }
-    };
-    // addCard = addCard.bind(handleSubmitClick);
+    console.log("data", data);
   };
+
+  const removeCard = (ev, index) => {
+    setLoading(true);
+    console.log("index", index);
+    ev.preventDefault();
+    let newCardList = [...cardList];
+
+    newCardList.splice(index, 1);
+    setCardList(newCardList);
+    setLoading(false);
+  };
+
+  if (loading) {
+    <>loading</>;
+  }
 
   return (
     <PageWrapper>
@@ -70,10 +79,17 @@ const DeckBuilder = () => {
 
         <DeckDetails>
           <ul>
-            {cardList.map((searchTerm) => (
-              <li key={searchTerm}>{searchTerm}</li>
-            ))}
-            <CardImage src={cardDisplay.data.imageUrl} />
+            {cardList.map((card, index) => {
+              return (
+                <CardButton>
+                  {/* <li key={card.name}>{card.name}</li> */}
+                  <CardImage src={card.imageUrl} />
+                  <button onClick={(ev) => removeCard(ev, index)}>
+                    Remove Card
+                  </button>
+                </CardButton>
+              );
+            })}
           </ul>
         </DeckDetails>
       </FormWrapper>
@@ -87,9 +103,16 @@ const PageWrapper = styled.div``;
 const FormWrapper = styled.div``;
 const DeckDetails = styled.div`
   display: flex;
+  flex-direction: column;
   margin: 10px;
 `;
 const CardImage = styled.img`
-  width: 80%;
+  width: 25%;
+  height: auto;
+`;
+
+const CardButton = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 export default DeckBuilder;

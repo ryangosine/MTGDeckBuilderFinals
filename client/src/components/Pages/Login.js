@@ -24,31 +24,41 @@ const Login = () => {
 
   let navigate = useNavigate();
 
-  const [userName, setUserName] = useState(() => {
-    const saved = localStorage.getItem("userName");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
+  // const [userName, setUserName] = useState(() => {
+  //   const saved = localStorage.getItem("userName");
+  //   const initialValue = JSON.parse(saved);
+  //   return initialValue || "";
+  // });
 
-  useEffect(() => {
-    fetch(`/api/get-user/${currentUser}`)
+  // useEffect(() => {}, []);
+
+  const body = { email: email, password: passWord };
+
+  const handleSubmit = (ev) => {
+    console.log("email", email);
+    console.log("password", passWord);
+    fetch("/api/get-user/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);
         setLoggedIn(true);
         console.log("data in login component", data);
-        navigate("dashboard");
+        navigate("../dashboard");
       });
-  }, [currentUser]);
-
-  const handleSubmit = (ev) => {
-    setUserName(ev.target.value);
+    // setUserName(ev.target.value);
   };
 
   const foundUserData = () => {
     if (currentUser !== undefined) {
       const loggedInUser = currentUser.find((user) => {
-        return user.userName === userName;
+        // return user.userName === userName;
       });
       console.log("logged In User", loggedInUser);
       setCurrentUser(loggedInUser);

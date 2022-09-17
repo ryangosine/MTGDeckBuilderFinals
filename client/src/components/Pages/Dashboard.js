@@ -7,16 +7,6 @@ import Header from "../Header";
 import SideBar from "../SideBar";
 
 const Dashboard = () => {
-  /**
-   * TO DO
-   * 1.) when creating a deck, it appears as a card (similar to the ecosystem project)
-   * that links to the deck page
-   *
-   * 2.) Style links appropriately
-   *
-   *
-   */
-
   return (
     <PageWrapper>
       <Header />

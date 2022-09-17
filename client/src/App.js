@@ -21,7 +21,7 @@ const App = () => {
             <Route path="dashboard" element={<Link to="../dashboard" />} />
           </Route>
           <Route path="deckbuilder/*" element={<DeckBuilder />} />
-          <Route path="cardfound/*" element={<CardFound />} />
+          <Route path="cardfound/:id" element={<CardFound />} />
           <Route path="profile" element={<Profile />} />
           <Route path="login/" element={<Login />} />
           <Route path="register/" element={<Register />} />

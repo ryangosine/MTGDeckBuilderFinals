@@ -2,6 +2,7 @@
 
 const express = require("express");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 const { users } = require("./database");
 const { getCards, getCard, getUser, addUser } = require("./handlers");
 
@@ -26,7 +27,7 @@ express()
 
   .get("/api/get-cards", getCards)
   .get("/api/get-card/:id", getCard)
-  .get("/api/get-user/:id", getUser)
+  .post("/api/get-user", getUser)
   .post("/api/add-user", addUser)
 
   // ---------------------------------

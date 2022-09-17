@@ -15,13 +15,7 @@ const SearchBar = () => {
   const handleSubmitClick = (ev) => {
     ev.preventDefault();
 
-    fetch(`/api/get-card/${searchTerm}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCardDisplay(data);
-        navigate("cardfound");
-      });
-    console.log("cardDisplay", cardDisplay);
+    navigate(`cardfound/${searchTerm}`);
   };
 
   return (
