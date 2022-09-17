@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import DeckBuilder from "./Pages/DeckBuilder";
 import Profile from "./Pages/Profile";
 
 const SideBar = () => {
+  let navigate = useNavigate();
   return (
     <Wrapper>
       <LinkToDeckBuilder>
         <nav>
-          <Link to="deckbuilder">
+          <Link to="../deckbuilder">
+            {" "}
+            {/**REMEMBER TO COME BACK TO THIS TO FIX MY ROUTES */}
             <h1>DeckBuilder</h1>
           </Link>
         </nav>

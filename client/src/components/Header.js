@@ -5,6 +5,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import NavBar from "./NavBar/NavBar";
 import { CurrentUserContext } from "./CurrentUserContext";
+import Dashboard from "./Pages/Dashboard";
 
 const Header = () => {
   /**
@@ -44,11 +45,18 @@ const Header = () => {
               <Link to="login" element={<Login />} />
             </nav>
           </LinkToLogin>
+
           <LinkToRegister>
             <nav>
               <Link to="register" element={<Register />} />
             </nav>
           </LinkToRegister>
+
+          <LinkToDashBoard>
+            <nav>
+              <Link to="dashboard" element={<Dashboard />} />
+            </nav>
+          </LinkToDashBoard>
         </NavBar>
       </HeaderLinks>
     </HeaderWrapper>
