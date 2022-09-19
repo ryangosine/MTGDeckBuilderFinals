@@ -9,9 +9,15 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import Dashboard from "./Dashboard";
 
 const Login = () => {
-  const [userData, setUserData] = useState([]);
-  const [email, setEmail] = useState("");
-  const [passWord, setPassWord] = useState("");
+  const [inputValues, setInputValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [validation, setValidation] = useState({
+    email: "",
+    password: "",
+  });
 
   const {
     currentUser,
@@ -21,22 +27,52 @@ const Login = () => {
     loggedOut,
     setLoggedOut,
   } = useContext(CurrentUserContext);
-
   let navigate = useNavigate();
+  const body = { email: email, password: password };
 
-  // const [userName, setUserName] = useState(() => {
-  //   const saved = localStorage.getItem("userName");
-  //   const initialValue = JSON.parse(saved);
-  //   return initialValue || "";
-  // });
+  const handleUserInput = (ev) => {
+    const { name, value } = ev.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
 
-  // useEffect(() => {}, []);
+  const checkValidation = () => {
+    let errors = validation;
 
-  const body = { email: email, password: passWord };
+    const emailConditions =
+      "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/";
+    if (!inputValues.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!inputValues.email.match(emailConditions)) {
+      errors.email = "Please provide a valid email address";
+    } else {
+      errors.email = "";
+    }
+
+    const cond1 = "/^(?=.*[a-z]).{6,20}$/";
+    const cond2 = "/^(?=.*[A-Z]).{6,20}$/";
+    const cond3 = "/^(?=.*[0-9]).{6,20}$/";
+    const password = inputValues.password;
+    if (!password) {
+      errors.password = "password is required";
+    } else if (password.length < 6) {
+      errors.password = "Password must be longer than 6 characters";
+    } else if (password.length >= 20) {
+      errors.password = "Password must shorter than 20 characters";
+    } else if (!password.match(cond1)) {
+      errors.password = "Password must contain at least one lowercase";
+    } else if (!password.match(cond2)) {
+      errors.password = "Password must contain at least one capital letter";
+    } else if (!password.match(cond3)) {
+      errors.password = "Password must contain at least a number";
+    } else {
+      errors.password = "";
+    }
+
+    setValidation(errors);
+  };
 
   const handleSubmit = (ev) => {
-    console.log("email", email);
-    console.log("password", passWord);
+    ev.preventDefault();
     fetch("/api/get-user/", {
       method: "POST",
       headers: {
@@ -47,24 +83,12 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setUserData(data);
+        setCurrentUser(data);
         setLoggedIn(true);
-        console.log("data in login component", data);
+        window.localStorage.setItem("loggedIn", true);
         navigate("../dashboard");
       });
     // setUserName(ev.target.value);
-  };
-
-  const foundUserData = () => {
-    if (currentUser !== undefined) {
-      const loggedInUser = currentUser.find((user) => {
-        // return user.userName === userName;
-      });
-      console.log("logged In User", loggedInUser);
-      setCurrentUser(loggedInUser);
-    } else {
-      return "undefined";
-    }
   };
 
   return (
@@ -72,15 +96,18 @@ const Login = () => {
       <PageHeader to="/">Back To Home</PageHeader>
       <EntryCard>
         <h2>Log In</h2>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleSubmit}>
           <InputGroup>
             <label htmlFor="login-email">Email Address</label>
             <Input
-              type="text"
+              type="email"
               placeholder="name@email.com"
               id="login-email"
-              onChange={(ev) => setEmail(ev.target.value)}
+              className="input-field"
+              name="login-email"
+              onChange={(ev) => handleUserInput(ev)}
             />
+            {validation.email && <p>{validation.email}</p>}
           </InputGroup>
 
           <InputGroup>
@@ -89,8 +116,11 @@ const Login = () => {
               type="password"
               placeholder="Password"
               id="password"
-              onChange={(ev) => setPassWord(ev.target.value)}
+              name="password"
+              className="input-field"
+              onChange={(ev) => handleUserInput(ev)}
             />
+            {validation.password && <p>{validation.password}</p>}
           </InputGroup>
 
           <Button type="submit" onClick={(ev) => handleSubmit(ev)} full>
@@ -98,7 +128,7 @@ const Login = () => {
           </Button>
         </form>
         <span>
-          Haven't ignighted your spark?
+          Haven't ignited your spark?
           <Link to="signup">Sign Up</Link>
         </span>
       </EntryCard>

@@ -16,7 +16,8 @@ const LogOutButton = () => {
   let navigate = useNavigate();
 
   const handleLogout = () => {
-    setLoggedIn(false);
+    // setLoggedIn(false);
+    window.localStorage.removeItem("loggedIn", false);
     navigate("/");
   };
 

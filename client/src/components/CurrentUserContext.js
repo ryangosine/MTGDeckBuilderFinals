@@ -10,8 +10,6 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
-    // const loggedOuttUser = loggedOut;
-    // console.log("loggedInUser", loggedInUser);
     console.log("loggedInUser", loggedInUser);
     if (loggedInUser) {
       setCurrentUser(loggedInUser);
@@ -21,6 +19,7 @@ export const CurrentUserProvider = ({ children }) => {
       setLoggedOut(true);
     }
   }, []);
+
   return (
     <CurrentUserContext.Provider
       value={{
